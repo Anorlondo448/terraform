@@ -1,6 +1,6 @@
 ###
 #
-# Batch Definition
+# Batch Job Definition
 #
 resource "aws_batch_job_definition" "test" {
   name = "batch_job_definition"
