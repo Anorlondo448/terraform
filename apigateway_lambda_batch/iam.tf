@@ -10,10 +10,12 @@ resource "aws_iam_role" "ecs_instance_role" {
 {
   "Version": "2012-10-17",
   "Statement": [
-    "Aciton": "sts:AssumeRole",
-    "Effect": "Allow",
-    "Principal": {
-      "Service": "ec2.amazonaws.com"
+    {
+      "Aciton": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      }
     }
   ]
 }
