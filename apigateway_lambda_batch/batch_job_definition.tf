@@ -2,7 +2,7 @@
 #
 # Batch Job Definition
 #
-resource "aws_batch_job_definition" "test" {
+resource "aws_batch_job_definition" "mokumoku" {
   name = "batch_job_definition"
   type = "container"
 
