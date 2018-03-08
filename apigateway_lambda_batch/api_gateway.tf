@@ -2,13 +2,29 @@
 #
 # API Gateway
 #
-resource "aws_api_gateway_rest_api" "mokumoku" {
-  name        = "mokumoku"
-  description = "this is api for mokumoku"
+# API Gateway
+resource "aws_api_gateway_rest_api" "api" {
+  name = "myapi"
 }
 
-resource "aws_api_gateway_resource" "mokumoku" {
-  rest_api_id = "${aws_api_gateway_rest_api.mokumoku.id}"
-  parent_id   = "${aws_api_gateway_rest_api.mokumoku.root_resource_id}"
-  path_part   = "mokumoku"
+resource "aws_api_gateway_resource" "resource" {
+  path_part   = "resource"
+  parent_id   = "${aws_api_gateway_rest_api.api.root_resource_id}"
+  rest_api_id = "${aws_api_gateway_rest_api.api.id}"
+}
+
+resource "aws_api_gateway_method" "method" {
+  rest_api_id   = "${aws_api_gateway_rest_api.api.id}"
+  resource_id   = "${aws_api_gateway_resource.resource.id}"
+  http_method   = "GET"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "integration" {
+  rest_api_id             = "${aws_api_gateway_rest_api.api.id}"
+  resource_id             = "${aws_api_gateway_resource.resource.id}"
+  http_method             = "${aws_api_gateway_method.method.http_method}"
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.lambda.arn}/invocations"
 }

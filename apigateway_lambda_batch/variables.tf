@@ -13,3 +13,9 @@ variable "region" {
   type    = "string"
   default = "ap-northeast-1"
 }
+
+## AWSアカウントIDを指定します
+variable "accountId" {
+  type    = "string"
+  default = "793428494912"
+}
