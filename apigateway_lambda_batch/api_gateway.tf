@@ -24,6 +24,11 @@ resource "aws_api_gateway_method_response" "response" {
   rest_api_id = "${aws_api_gateway_rest_api.api.id}"
   resource_id = "${aws_api_gateway_resource.resource.id}"
   http_method = "${aws_api_gateway_method.method.http_method}"
+
+  response_models {
+    "application/json" = "Empty"
+  }
+
   status_code = "200"
 }
 
