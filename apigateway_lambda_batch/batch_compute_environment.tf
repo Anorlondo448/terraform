@@ -9,18 +9,21 @@ resource "aws_batch_compute_environment" "batch" {
     instance_role = "${aws_iam_instance_profile.ecs_instance_role.arn}"
 
     instance_type = [
-      "c4.large",
+      "optimal",
     ]
 
-    max_vcpus = 16
-    min_vcpus = 0
+    max_vcpus     = 16
+    min_vcpus     = 0
+    desired_vcpus = 2
 
     security_group_ids = [
       "${aws_security_group.batch.id}",
     ]
 
     subnets = [
-      "${aws_subnet.batch.id}",
+      "${aws_subnet.batch-1a.id}",
+      "${aws_subnet.batch-1c.id}",
+      "${aws_subnet.batch-1d.id}",
     ]
 
     type = "EC2"
