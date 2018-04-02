@@ -34,3 +34,9 @@ variable "cidr-private-subnet" {
   type    = "string"
   default = "10.2.20.0/24"
 }
+
+## S3 bucket for cloudtrail log
+variable "s3-bucket" {
+  type    = "string"
+  default = "cloudtrail-all-region-anorlondo"
+}
