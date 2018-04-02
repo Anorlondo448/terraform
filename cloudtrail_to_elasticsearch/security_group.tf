@@ -31,3 +31,23 @@ resource "aws_security_group" "bastion" {
     Name = "bastion"
   }
 }
+
+resource "aws_security_group" "lambda" {
+  name        = "lambda"
+  description = "lambda security group"
+  vpc_id      = "${aws_vpc.elasticsearch.id}"
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    cidr_blocks = [
+      "0.0.0.0/0",
+    ]
+  }
+
+  tags {
+    Name = "lambda"
+  }
+}
