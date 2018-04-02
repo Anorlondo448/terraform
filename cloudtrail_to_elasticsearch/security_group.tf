@@ -51,3 +51,34 @@ resource "aws_security_group" "lambda" {
     Name = "lambda"
   }
 }
+
+resource "aws_security_group" "elasticsearch" {
+  name        = "elasticsearch"
+  description = "elasticsearch security group"
+  vpc_id      = "${aws_vpc.elasticsearch.id}"
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    security_groups = [
+      "${aws_security_group.bastion.id}",
+      "${aws_security_group.lambda.id}",
+    ]
+  }
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    cidr_blocks = [
+      "0.0.0.0/0",
+    ]
+  }
+
+  tags {
+    Name = "elasticsearch"
+  }
+}
