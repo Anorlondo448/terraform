@@ -13,6 +13,12 @@ variable "region" {
   default = "ap-northeast-1"
 }
 
+## AWSアカウントID
+variable "account-id" {
+  type    = "string"
+  default = "793428494912"
+}
+
 ###
 #
 # Network
