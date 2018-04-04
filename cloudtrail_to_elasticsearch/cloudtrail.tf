@@ -10,8 +10,5 @@ resource "aws_cloudtrail" "all-region" {
   is_multi_region_trail         = true
 
   cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.cloudtrail.arn}"
-
-  # AWSコンソールから実施するとIAMロールの紐付けと別に、独自のポリシー(oneClick_Cloudtrail...)の紐付けを要求される
-  # 独自のポリシーの操作がterraformから難しいので、AWSコンソールから作成する
-  # cloud_watch_logs_role_arn  = "${aws_iam_role.cloudtrail.arn}"
+  cloud_watch_logs_role_arn  = "${aws_iam_role.cloudtrail.arn}"
 }

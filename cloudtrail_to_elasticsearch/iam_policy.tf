@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "cloudtrail" {
     ]
 
     resources = [
-      "arn:aws:logs:ap-northeast-1:${var.account-id}:log-group:CloudTrail/DefaultLogGroup:log-stream:${var.account-id}_CloudTrail_ap-northeast-1*",
+      "${aws_cloudwatch_log_group.cloudtrail.arn}",
     ]
   }
 
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "cloudtrail" {
     ]
 
     resources = [
-      "arn:aws:logs:ap-northeast-1:${var.account-id}:log-group:CloudTrail/DefaultLogGroup:log-stream:${var.account-id}_CloudTrail_ap-northeast-1*",
+      "${aws_cloudwatch_log_group.cloudtrail.arn}",
     ]
   }
 }
