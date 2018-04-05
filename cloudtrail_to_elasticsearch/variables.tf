@@ -46,3 +46,12 @@ variable "s3-bucket" {
   type    = "string"
   default = "cloudtrail-all-region-anorlondo"
 }
+
+###
+#
+# EC2
+#
+variable "instance-type" {
+  type    = "string"
+  default = "t2.micro"
+}
